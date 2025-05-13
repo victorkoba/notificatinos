@@ -6,6 +6,15 @@ import AdicionarUsuario from "./screens/AdicionarUsuarios";
 import UploadImagem from "./screens/UploadImagem";
 import UploadVideo from "./screens/UploadVideo";
 import AdicionarJogador from "./screens/AdicionarJogador";
+import * as Notifications from 'expo-notifications'
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldSetBadge:false,
+    shouldPlaySound: true,
+  })
+})
 
 const Stack = createNativeStackNavigator();
 
