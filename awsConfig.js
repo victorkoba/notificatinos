@@ -1,5 +1,7 @@
 import AWS from "aws-sdk";
 
+AWS.util.date.getDate = () => new Date();
+
 AWS.config.update({
     accessKeyId: "ASIA52SJ4SBDFVPWLPCI",
     secretAccessKey: "3w3vkTSLcUpHre3rHo495x5nQiD6XS+f1RcF8gIk",
