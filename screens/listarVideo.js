@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import s3 from '../awsConfig';
+import { Video } from 'expo-av';
 
 const bucketName = 'bucket-storage-senai-30';
 
