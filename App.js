@@ -1,20 +1,58 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-export default function App() {
+import PaginaPrincipal from "./screens/PaginaPrincipal";
+import AdicionarUsuario from "./screens/AdicionarUsuarios";
+import UploadImagem from "./screens/UploadImagem";
+import UploadVideo from "./screens/UploadVideo";
+import AdicionarJogador from "./screens/AdicionarJogador";
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="PaginaPrincipal">
+        <Stack.Screen
+          name="PaginaPrincipal"
+          component={PaginaPrincipal}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AdicionarUsuario"
+          component={AdicionarUsuario}
+          options={{
+            title: "Adicionar Usuário",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="UploadImagem"
+          component={UploadImagem}
+          options={{
+            title: "Upload Imagens",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="UploadVideo"
+          component={UploadVideo}
+          options={{
+            title: "Upload Vídeos",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="adicionarJogador"
+          component={AdicionarJogador}
+          options={{
+            title: "Adicionar Jogador",
+            headerShown: true,
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
