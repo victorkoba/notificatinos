@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#333",
+    color: "#000",
     textAlign: "center",
     marginBottom: 20,
   },
   cartao: {
-    backgroundColor: "#e3e3e3",
+    backgroundColor: "#fff",
     padding: 15,
     borderRadius: 8,
     marginBottom: 10,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   botaoPress: {
     width: "100%",
-    backgroundColor: "#00a3ff",
+    backgroundColor: "#000",
     padding: 10,
     borderRadius: 5,
     marginVertical: 5,

@@ -101,7 +101,7 @@ const AdicionarUsuario = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground source={{ uri: img }} style={styles.background}>
+    <View style={styles.background}>
       <Text style={styles.titulo}>Adicionar Jogador</Text>
 
       <TextInput
@@ -147,7 +147,7 @@ const AdicionarUsuario = ({ navigation }) => {
           </Pressable>
         </>
       )}
-    </ImageBackground>
+    </View>
   );
 };
 
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#fff",
+    color: "#000",
     textAlign: "center",
     marginBottom: 20,
   },
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   botao: {
-    backgroundColor: "#0C242E",
+    backgroundColor: "#000",
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
