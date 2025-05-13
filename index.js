@@ -1,3 +1,4 @@
+//Miguel Francisco da Silva Sales e Victor Luiz Koba Batista
 import { registerRootComponent } from 'expo';
 
 import App from './App';

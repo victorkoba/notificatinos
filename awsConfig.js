@@ -1,3 +1,4 @@
+//Miguel Francisco da Silva Sales e Victor Luiz Koba Batista
 import AWS from "aws-sdk";
 
 AWS.util.date.getDate = () => new Date();
