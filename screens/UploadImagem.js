@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Pressable,
-  Image,
   View,
   Text,
   StyleSheet,
-  Alert,
   Modal,
   TextInput,
   Button,
+  Pressable,
+  Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import s3 from '../awsConfig';
-import AWS from "aws-sdk";
+import * as Notifications from "expo-notifications";
+import s3 from "../awsConfig";
 
 const S3_BUCKET = "bucket-storage-senai-30";
 
@@ -22,10 +21,22 @@ export default function UploadVideo({ navigation }) {
   const [category, setCategory] = useState("");
   const [uploading, setUploading] = useState(false);
 
+  // Solicitar permissão para notificações
+  useEffect(() => {
+    const requestNotificationPermission = async () => {
+      const { status } = await Notifications.requestPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Permissão necessária", "As notificações não foram permitidas.");
+      }
+    };
+    requestNotificationPermission();
+  }, []);
+
+  // Escolher imagem da galeria
   const escolherImagem = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      alert("Permissão necessária", "Precisamos da permissão para acessar suas fotos.");
+      Alert.alert("Permissão necessária", "Acesso às fotos não permitido.");
       return;
     }
 
@@ -40,38 +51,55 @@ export default function UploadVideo({ navigation }) {
     }
   };
 
+  // Enviar notificação após upload
+  const enviarNotificacao = async (mensagem) => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "Upload Concluído!",
+        body: mensagem,
+      },
+      trigger: null,
+    });
+  };
+
+  // Fazer o upload da imagem
   const uploadImage = async () => {
     if (!imageUri) {
-      alert("Erro", "Nenhuma imagem selecionada.");
+      Alert.alert("Erro", "Nenhuma imagem selecionada.");
       return;
     }
-  
+
     if (!category.trim()) {
-      alert("Erro", "Por favor, preencha a categoria.");
+      Alert.alert("Erro", "Por favor, preencha a categoria.");
       return;
     }
-  
+
     try {
       setUploading(true);
       const response = await fetch(imageUri);
       const blob = await response.blob();
       const filename = `imagens/${category.trim()}/${Date.now()}.jpg`;
-  
+
       const params = {
         Bucket: S3_BUCKET,
         Key: filename,
         Body: blob,
         ContentType: "image/jpeg",
       };
-  
-      s3.upload(params, (err, data) => {
+
+      s3.upload(params, async (err, data) => {
         setUploading(false);
         if (err) {
           console.error("Erro no upload:", err);
-          alert("Erro", "Falha no envio da imagem.");
+          Alert.alert("Erro", "Falha no envio da imagem.");
         } else {
           console.log("Imagem disponível em:", data.Location);
-          alert("Sucesso", "Imagem salva com sucesso!");
+          Alert.alert("Sucesso", "Imagem salva com sucesso!");
+
+          // Enviar notificação
+          await enviarNotificacao("Imagem adicionada com sucesso!");
+
+          // Limpar campos e fechar modal
           setImageUri(null);
           setCategory("");
           setModalVisible(false);
@@ -80,10 +108,9 @@ export default function UploadVideo({ navigation }) {
     } catch (error) {
       setUploading(false);
       console.error("Erro no upload:", error);
-      alert("Erro", "Falha no envio da imagem.");
+      Alert.alert("Erro", "Falha no envio da imagem.");
     }
   };
-  
 
   return (
     <View style={styles.container}>
