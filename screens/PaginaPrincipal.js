@@ -22,11 +22,19 @@ const HomeBot = ({ navigation }) => {
           <Text style={styles.titulo}>Navegações</Text>
 
           <View style={styles.cartao}>
+            
             <Pressable 
             style={styles.botaoPress}
-            onPress={() => navigation.navigate("AdicionarUsuario")}
+            onPress={() => navigation.navigate("listarImagem")}
             >
-              <Text style={styles.botao}> Adicionar Usuário </Text>
+              <Text style={styles.botao}> Listar Imagens </Text>
+            </Pressable>
+
+            <Pressable 
+            style={styles.botaoPress}
+            onPress={() => navigation.navigate("listarVideo")}
+            >
+              <Text style={styles.botao}> Listar Vídeos </Text>
             </Pressable>
 
             <Pressable 

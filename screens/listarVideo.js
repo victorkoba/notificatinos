@@ -8,8 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { Video } from './uploadVideo';
-import s3 from '../../awsConfig';
+import s3 from '../awsConfig';
 
 const bucketName = 'bucket-storage-senai-30';
 

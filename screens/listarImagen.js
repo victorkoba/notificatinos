@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
   Pressable,
 } from 'react-native';
-import s3 from '../../awsConfig';
+import s3 from '../awsConfig';
 
 const BUCKET_NAME = "bucket-storage-senai-30";
 const FOLDER = "imagens/";
