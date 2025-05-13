@@ -16,11 +16,6 @@ const HomeBot = ({ navigation }) => {
     navigation.navigate("RealizarLogin")
   };
   return (
-    <ImageBackground 
-      source={require("../assets/splash-icon.png")} 
-      style={styles.background}
-      resizeMode="cover"
-    >
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.box}>
 
@@ -55,7 +50,6 @@ const HomeBot = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
-    </ImageBackground>
   );
 };
 

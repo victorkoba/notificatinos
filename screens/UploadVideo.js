@@ -10,7 +10,8 @@ import {
   Modal,
 } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
-// import s3 from "../../awsConfig";
+import s3 from '../awsConfig';
+import AWS from "aws-sdk";
 
 const S3_BUCKET = "bucket-storage-senai-30";
 

@@ -11,7 +11,8 @@ import {
   Button,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-// import s3 from "../../awsConfig";
+import s3 from '../awsConfig';
+import AWS from "aws-sdk";
 
 const S3_BUCKET = "bucket-storage-senai-30";
 

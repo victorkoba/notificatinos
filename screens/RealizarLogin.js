@@ -10,7 +10,7 @@ import {
     ImageBackground
 } from 'react-native';
 // import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import app from '../../firebaseConfig';
+import app from '../firebaseConfig';
 
 const RealizarLogin = ({ navigation }) => {
     const [email, setEmail] = useState('');

@@ -15,8 +15,8 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { getApp } from 'firebase/app';
-// // import s3 from '../../awsConfig';
-// import aws from 'aws-sdk';
+import s3 from '../awsConfig';
+import AWS from "aws-sdk";
 
 const S3_BUCKET = 'bucket-storage-senai-30';
 
